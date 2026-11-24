@@ -1,128 +1,102 @@
-# :rocket: Nextjs Enterprise Saas Starter
+# Next.js 14+ Enterprise SaaS Starter
 
-<div align="center">
+[![CI Pipeline](https://github.com/tayyabmasood911/nextjs-enterprise-saas-starter/actions/workflows/ci.yml/badge.svg)](https://github.com/tayyabmasood911/nextjs-enterprise-saas-starter/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-14+_App_Router-black.svg)](https://nextjs.org)
+[![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind_CSS_v3-38B2AC.svg)](https://tailwindcss.com)
+[![Docker](https://img.shields.io/badge/Docker-Multi--Stage_Standalone-2496ED.svg)](Dockerfile)
 
-[![Status](https://img.shields.io/badge/status-production--ready-brightgreen?style=for-the-badge&logo=git)]()
-[![Domain](https://img.shields.io/badge/domain-Software--Engineering-blueviolet?style=for-the-badge)]()
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge&logo=github)](https://github.com/T9113/nextjs-enterprise-saas-starter/pulls)
-[![Security Hardened](https://img.shields.io/badge/security-hardened-red?style=for-the-badge&logo=shield)]()
-
-</div>
+A production-grade, multi-tenant enterprise Software-as-a-Service (SaaS) boilerplate built on Next.js 14 App Router, React Server Components (RSC), TypeScript, Tailwind CSS, Edge Middleware, API route handlers, and a multi-stage standalone Docker deployment pipeline.
 
 ---
 
-## :memo: Executive Summary
+## Architecture Overview
 
-**Nextjs Enterprise Saas Starter** is an enterprise-grade production engineering implementation designed for mission-critical deployments. Built to meet stringent requirements for **99.99% availability**, zero-trust security boundaries, automated resilience, and seamless CI/CD delivery.
+![Next.js Enterprise SaaS Architecture](docs/architecture.svg)
 
-Key operational outcomes:
-- **Resilience:** Multi-zone high availability with automated fault detection and recovery.
-- **Scalability:** Elastic horizontal scaling responsive to real-time workload demand.
-- **Security:** Strict adherence to least-privilege RBAC, encrypted communications, and zero committed secrets.
-- **Maintainability:** Modular, declarative configuration aligned with cloud-native industry standards.
+The application architecture follows modern enterprise cloud principles:
 
----
-
-## :building_construction: System Architecture
-
-```text
-+-------------------------------------------------------------------------------+
-|                       Nextjs Enterprise Saas Starter Architecture Blueprint                    |
-|                                                                               |
-|   [Client Ingress] ===> [API Gateway / Traffic Router (TLS 1.3 / mTLS)]       |
-|                                     |                                         |
-|                                     v                                         |
-|                         [Core Workload Cluster]                               |
-|                         (Multi-Replica / Multi-AZ)                            |
-|                                     |                                         |
-|                 +-------------------+-------------------+                     |
-|                 |                                       |                     |
-|                 v                                       v                     |
-|     [Persistence & Storage Layer]           [Observability & Telemetry Engine]|
-|      (Encrypted at Rest / KMS)              (Prometheus / OTLP / OpenSearch)  |
-+-------------------------------------------------------------------------------+
-```
+1. **Edge & Ingress Layer**: Edge Middleware (`middleware.ts`) inspects incoming requests, validates session tokens, enforces route protection on `/dashboard`, and routes subdomains for multi-tenant isolation with zero cold-start delay.
+2. **App Router Core**: Built with React Server Components (`src/app/layout.tsx`, `src/app/page.tsx`), streaming HTML directly from the server for instant First Contentful Paint (FCP) and optimal search engine discoverability.
+3. **Route Handlers**: Serverless API routes (`/api/health`, `/api/v1/billing`) with native JSON request parsing, error handling, and Stripe webhook readiness.
+4. **Standalone Multi-Stage Docker Packaging**: Packaged via Next.js `output: 'standalone'` into an ultra-lean Alpine container running under an unprivileged `nextjs` user.
 
 ---
 
-## :sparkles: Key Enterprise Capabilities
+## Key Features
 
-- :zap: **High Availability & Fault Tolerance:** Eliminates single points of failure via multi-node redundancy and health check probes.
-- :shield: **Zero-Trust Security Posture:** Enforces non-root runtime environments, ephemeral credentials, and automated vulnerability scanning.
-- :chart_with_upwards_trend: **Elastic Autoscaling:** Dynamic resource provisioning based on custom throughput, memory pressure, and queue depth.
-- :mag: **Full-Stack Observability:** Standardized structured telemetry, metrics instrumentation, and distributed request tracing.
-- :package: **GitOps & CI/CD Automation:** Infrastructure and configuration managed declaratively with automated testing and continuous deployment.
-
----
-
-## :file_folder: Repository Directory Structure
-
-```text
-.
-|-- config/              # Declarative configuration and environment definitions
-|-- src/                 # Production source code and manifests
-|-- scripts/             # Operational automation, setup, and maintenance scripts
-|-- tests/               # Comprehensive validation and unit test suites
-|-- LICENSE              # MIT Open Source License
-`-- README.md            # Enterprise architectural documentation
-```
+- **Next.js 14 App Router**: Modern directory layout utilizing nested layouts, loading states, and error boundaries.
+- **Edge Middleware Protection**: Sub-millisecond JWT authentication and redirect logic at the CDN edge.
+- **Tailwind CSS Styling**: Utility-first responsive design, modern dark/light system palette, and typography defaults.
+- **Production API Route Handlers**: Pre-configured `/api/health` and `/api/v1/billing` endpoints.
+- **Multi-Stage Dockerfile**: Ultra-lean, non-root container packaging with healthcheck probes.
+- **Enterprise Security Controls**: Strict Content Security Policy (CSP) headers, CORS configurations, and unprivileged container runtime execution.
 
 ---
 
-## :zap: Quick Start & Deployment
+## Quick Start
 
-### Prerequisites
-- Git `>= 2.40`
-- Docker Engine `>= 24.0` / Cloud CLI (AWS / GCP / Azure / Kubernetes)
-
-### Deployment Steps
+### 1. Install Dependencies
 ```bash
-# 1. Clone the repository
-git clone https://github.com/T9113/nextjs-enterprise-saas-starter.git
-cd nextjs-enterprise-saas-starter
+npm install
+```
 
-# 2. Inspect and configure environment parameters
-cp config/example.env config/.env
+### 2. Configure Environment
+```bash
+cp config/production.env.example .env
+```
 
-# 3. Validate configurations and syntax
-# Run linters, dry-run validations, or unit test suites
+### 3. Run Development Server
+```bash
+npm run dev
+```
+Open `http://localhost:3000` in your browser.
 
-# 4. Deploy workloads / infrastructure
-# Execute deployment manifests or container runtime
+### 4. Build and Run Standalone Production Container
+```bash
+docker compose up -d
+```
+Check health: `curl http://localhost:3000/api/health`
+
+---
+
+## Project Structure
+
+```
+├── Dockerfile                    # Multi-stage standalone production build
+├── docker-compose.yml            # Local container deployment
+├── middleware.ts                 # Edge auth & route protection
+├── next.config.mjs               # Standalone output configuration
+├── package.json                  # Dependencies & scripts
+├── tailwind.config.ts            # Tailwind CSS design system tokens
+└── src/
+    └── app/
+        ├── layout.tsx            # Global root layout & navigation
+        ├── page.tsx              # Enterprise marketing hero & features
+        ├── globals.css           # Tailwind base styles
+        ├── dashboard/
+        │   └── page.tsx          # Authenticated customer portal
+        └── api/
+            ├── health/route.ts   # System liveness & readiness probe
+            └── v1/billing/route.ts # Billing & subscription handler
 ```
 
 ---
 
-## :gear: Configuration Reference
+## Verification & Testing
 
-| Parameter | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `ENVIRONMENT` | string | `production` | Deployment environment target (`staging`, `production`) |
-| `LOG_LEVEL` | string | `info` | Structured logging verbosity (`debug`, `info`, `warn`, `error`) |
-| `METRICS_ENABLED` | boolean | `true` | Enables real-time Prometheus / OpenTelemetry telemetry export |
-| `TLS_MIN_VERSION` | string | `TLSv1.3` | Minimum allowable TLS protocol version for network traffic |
+Execute validation tests:
+```bash
+python3 -m unittest discover -s tests -p "test_*.py"
+```
 
----
-
-## :lock: Security, Compliance & Governance
-
-1. **Least-Privilege Execution:** Services run under restricted service accounts with zero root permissions.
-2. **Encrypted Data In-Flight & At-Rest:** AES-256 / KMS envelope encryption for persistent state and TLS 1.3 for network transport.
-3. **Automated Supply Chain Security:** All dependencies and container images verified against CVE databases using Trivy and Semgrep.
-4. **Zero-Secret Guarantee:** No hardcoded tokens, passwords, or private keys exist in this codebase.
+Execute health diagnostic:
+```bash
+bash scripts/healthcheck.sh
+```
 
 ---
 
-## :bust_in_silhouette: Author & Maintainer
+## Security & Responsible Disclosure
 
-**Tayyab Masood**  
-Cloud Solutions Architect & Senior DevOps Engineer  
-- :globe_with_meridians: **GitHub:** [@T9113](https://github.com/T9113)  
-- :scroll: **Certification:** AWS Certified Solutions Architect - Associate  
-
----
-
-## :page_facing_up: License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+Please review our [SECURITY.md](SECURITY.md) for vulnerability disclosure procedures. All security inquiries should be directed to [tayyabmasood911@gmail.com](mailto:tayyabmasood911@gmail.com).

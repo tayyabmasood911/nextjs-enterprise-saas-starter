@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="100%" height="100%">
+  <!-- Pure White Strict Background -->
+  <rect width="960" height="560" fill="#ffffff" />
+  
+  <!-- Modern Technical Blueprint Grid -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#f1f5f9" stroke-width="1" />
+    </pattern>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.04" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#0284c7" />
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#059669" />
+    </marker>
+  </defs>
+  <rect width="960" height="560" fill="url(#grid)" />
+
+  <!-- Outer Canvas Border -->
+  <rect x="20" y="20" width="920" height="520" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="2" />
+
+  <!-- Header Banner -->
+  <rect x="40" y="40" width="880" height="60" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />
+  <circle cx="65" cy="70" r="14" fill="#0f172a" />
+  <text x="65" y="75" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">N14</text>
+  <text x="90" y="66" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#0f172a">Next.js 14+ Enterprise SaaS Starter Architecture</text>
+  <text x="90" y="85" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#64748b">App Router, React Server Components (RSC), Edge Middleware, API Routes &amp; Standalone Docker</text>
+  <rect x="760" y="55" width="140" height="30" rx="6" fill="#ecfdf5" stroke="#10b981" stroke-width="1" />
+  <text x="830" y="74" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#059669" text-anchor="middle">STRICT PURE WHITE</text>
+
+  <!-- Left: Edge & Ingress Layer -->
+  <g transform="translate(45, 125)">
+    <rect width="260" height="345" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#cardShadow)" />
+    <rect x="0" y="0" width="260" height="36" rx="10" fill="#f1f5f9" />
+    <text x="130" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#334155" text-anchor="middle">1. Edge &amp; Client Ingress</text>
+
+    <!-- Edge Middleware -->
+    <rect x="15" y="50" width="230" height="90" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" />
+    <text x="25" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#1e40af">Edge Middleware (middleware.ts)</text>
+    <text x="25" y="88" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#2563eb">&#x2022; Sub-millisecond JWT authentication</text>
+    <text x="25" y="104" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#2563eb">&#x2022; Multi-tenant tenant/subdomain routing</text>
+    <text x="25" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#2563eb">&#x2022; Session protection on /dashboard</text>
+    <text x="25" y="134" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#2563eb">&#x2022; Zero cold-start execution</text>
+
+    <!-- Client Consumers -->
+    <rect x="15" y="150" width="230" height="85" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+    <text x="25" y="170" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Browser &amp; Mobile Clients</text>
+    <text x="25" y="188" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#475569">&#x2022; Responsive Tailwind CSS UI</text>
+    <text x="25" y="204" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#475569">&#x2022; Lucide icons &amp; accessible navigation</text>
+    <text x="25" y="220" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#475569">&#x2022; Dark/light theme readiness</text>
+
+    <!-- CDN Edge Cache -->
+    <rect x="15" y="245" width="230" height="85" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+    <text x="25" y="265" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Global CDN / Edge Cache</text>
+    <text x="25" y="283" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">&#x2022; Static assets (/_next/static)</text>
+    <text x="25" y="299" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">&#x2022; Incremental Static Regeneration (ISR)</text>
+    <text x="25" y="315" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b">&#x2022; Brotli/Gzip auto compression</text>
+  </g>
+
+  <!-- Middle: Next.js 14 App Router Core -->
+  <g transform="translate(330, 125)">
+    <rect width="280" height="345" rx="10" fill="#ffffff" stroke="#0f172a" stroke-width="2" filter="url(#cardShadow)" />
+    <rect x="0" y="0" width="280" height="36" rx="10" fill="#f8fafc" />
+    <text x="140" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#0f172a" text-anchor="middle">2. App Router (src/app)</text>
+
+    <!-- App Directory Routes -->
+    <rect x="15" y="50" width="250" height="150" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+    <text x="25" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f172a">App Directory Topology:</text>
+    
+    <rect x="25" y="80" width="230" height="24" rx="4" fill="#eff6ff" />
+    <text x="35" y="96" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="bold" fill="#1e40af">src/app/layout.tsx (Root Layout &amp; Nav)</text>
+
+    <rect x="25" y="108" width="230" height="24" rx="4" fill="#eff6ff" />
+    <text x="35" y="124" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="bold" fill="#1e40af">src/app/page.tsx (Landing Page &amp; Hero)</text>
+
+    <rect x="25" y="136" width="230" height="24" rx="4" fill="#eff6ff" />
+    <text x="35" y="152" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="bold" fill="#1e40af">src/app/dashboard/page.tsx (SaaS Portal)</text>
+
+    <text x="25" y="185" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#047857">&#x2714; React Server Components (RSC) by default</text>
+
+    <!-- API Route Handlers -->
+    <rect x="15" y="210" width="250" height="115" rx="6" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5" />
+    <text x="25" y="232" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#6b21a8">Route Handlers (Serverless/API)</text>
+    <text x="25" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#581c87">&#x2022; GET /api/health (Readiness Probe)</text>
+    <text x="25" y="266" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#581c87">&#x2022; GET/POST /api/v1/billing (Stripe Webhook)</text>
+    <text x="25" y="282" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#581c87">&#x2022; Strongly typed NextResponse &amp; Requests</text>
+    <text x="25" y="298" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#581c87">&#x2022; Node.js / Edge runtime options</text>
+  </g>
+
+  <!-- Right: Multi-Stage Standalone Docker Packaging -->
+  <g transform="translate(635, 125)">
+    <rect width="280" height="345" rx="10" fill="#ffffff" stroke="#059669" stroke-width="2" filter="url(#cardShadow)" />
+    <rect x="0" y="0" width="280" height="36" rx="10" fill="#ecfdf5" />
+    <text x="140" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#047857" text-anchor="middle">3. Production Docker Packaging</text>
+
+    <!-- Multi-Stage Dockerfile -->
+    <rect x="15" y="50" width="250" height="150" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" />
+    <text x="25" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#15803d">Multi-Stage Docker Pipeline</text>
+    
+    <rect x="25" y="80" width="230" height="24" rx="4" fill="#ffffff" stroke="#bbf7d0" stroke-width="1" />
+    <text x="35" y="96" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="bold" fill="#166534">Stage 1: deps (node:20-alpine &amp; ci)</text>
+
+    <rect x="25" y="108" width="230" height="24" rx="4" fill="#ffffff" stroke="#bbf7d0" stroke-width="1" />
+    <text x="35" y="124" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="bold" fill="#166534">Stage 2: builder (output: standalone)</text>
+
+    <rect x="25" y="136" width="230" height="24" rx="4" fill="#ffffff" stroke="#bbf7d0" stroke-width="1" />
+    <text x="35" y="152" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="bold" fill="#166534">Stage 3: runner (nextjs non-root user)</text>
+
+    <text x="25" y="185" font-family="system-ui, -apple-system, sans-serif" font-size="9" fill="#15803d">&#x2714; Image footprint: &lt;120MB (Ultra-lean)</text>
+
+    <!-- Docker Compose Orchestration -->
+    <rect x="15" y="210" width="250" height="115" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+    <text x="25" y="232" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Container Orchestration</text>
+    <text x="25" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#475569">&#x2022; Port 3000 mapping</text>
+    <text x="25" y="266" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#475569">&#x2022; Container healthcheck: /api/health</text>
+    <text x="25" y="282" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#475569">&#x2022; Environment variable injection</text>
+    <text x="25" y="298" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#475569">&#x2022; Zero-downtime rolling restart ready</text>
+  </g>
+
+  <!-- Connectors -->
+  <path d="M 305 220 L 330 220" fill="none" stroke="#0284c7" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M 610 220 L 635 220" fill="none" stroke="#059669" stroke-width="2" marker-end="url(#arrow-emerald)" />
+
+  <!-- Footer -->
+  <rect x="40" y="490" width="880" height="35" rx="6" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />
+  <text x="55" y="512" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#475569">Production Standards:</text>
+  <text x="180" y="512" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b">React Server Components (RSC)</text>
+  <text x="400" y="512" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b">&#x2022; Edge Middleware Security</text>
+  <text x="630" y="512" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#64748b">&#x2022; Non-Root Multi-Stage Dockerfile</text>
+</svg>
